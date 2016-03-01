@@ -3,7 +3,7 @@ package com.company;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class ArrayList<T> implements List<T> {
+public class ArrayList<T> implements List<T>, Stack<T> {
     private class ArrayListIterator implements Iterator<T> {
         private int index;
         private Object[] elements;
@@ -15,10 +15,12 @@ public class ArrayList<T> implements List<T> {
             nElements = list.size;
         }
 
+        @Override
         public boolean hasNext() {
             return index < nElements;
         }
 
+        @Override
         public T next() {
             if (hasNext()) {
                 @SuppressWarnings("unchecked")
@@ -37,6 +39,8 @@ public class ArrayList<T> implements List<T> {
         elements = new Object[10];
         size = 0;
     }
+
+    @Override
     public void add(T element) {
         if (size == elements.length) {
             Object[] newElements = new Object[elements.length * 2];
@@ -47,6 +51,16 @@ public class ArrayList<T> implements List<T> {
         size++;
     }
 
+    @Override
+    public T pop() {
+        if (size == 0) {
+            return null;
+        }
+        size--;
+        return get(size);
+    }
+
+    @Override
     public T get(int index){
         @SuppressWarnings("unchecked")
         T element = (T)elements[index];
