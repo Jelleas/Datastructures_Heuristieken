@@ -3,7 +3,7 @@ package com.company;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class LinkedList<T> implements List<T>, Stack<T> {
+public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
     private class LinkedListIterator implements Iterator<T> {
         private Link cursor;
 
@@ -51,6 +51,18 @@ public class LinkedList<T> implements List<T>, Stack<T> {
     }
 
     @Override
+    public T get(int index) {
+        int i = 0;
+        for (T element : this) {
+            if (i == index) {
+                return element;
+            }
+            i++;
+        }
+        return null;
+    }
+
+    @Override
     public T pop() {
         if (end == null) {
             return null;
@@ -61,15 +73,13 @@ public class LinkedList<T> implements List<T>, Stack<T> {
     }
 
     @Override
-    public T get(int index) {
-        int i = 0;
-        for (T element : this) {
-            if (i == index) {
-                return element;
-            }
-            i++;
+    public T poll() {
+        if (begin == null) {
+            return null;
         }
-        return null;
+        T element = begin.value;
+        begin = begin.next;
+        return element;
     }
 
     @Override
