@@ -1,6 +1,6 @@
 package com.company;
 
-public interface HashTable<K,V> {
+public interface HashTable<K,V> extends Iterable<K>{
     void put(K key, V value);
     V get(K key);
 }

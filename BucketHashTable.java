@@ -101,5 +101,11 @@ public class BucketHashTable<K,V> implements HashTable<K,V> {
         System.out.println(table.get("Hello"));
         System.out.println("Getting key \"World!\"");
         System.out.println(table.get("World!"));
+        System.out.println();
+
+        System.out.println("Iterating over hashtable and printing all keys:");
+        for (String key : table) {
+            System.out.println(key);
+        }
     }
 }
