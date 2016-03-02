@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.ArrayList; // Cheat import
 import java.util.Iterator;
 import java.util.NoSuchElementException;

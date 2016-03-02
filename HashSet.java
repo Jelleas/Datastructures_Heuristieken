@@ -1,5 +1,3 @@
-package com.company;
-
 import java.util.Iterator;
 
 public class HashSet<T> implements Set<T> {
