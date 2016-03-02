@@ -122,6 +122,3 @@ public class ArrayList<T> implements List<T>, Stack<T>, Queue<T> {
         }
     }
 }
-
-
-
