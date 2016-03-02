@@ -5,10 +5,10 @@ import java.util.ArrayList; // Cheat import
 import java.util.NoSuchElementException;
 
 public class BinaryHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueue<T> {
-    private class ArrayHeapIterator implements Iterator<T> {
+    private class BinaryHeapIterator implements Iterator<T> {
         private BinaryHeap<T> heap;
 
-        public ArrayHeapIterator(BinaryHeap<T> heap) {
+        public BinaryHeapIterator(BinaryHeap<T> heap) {
             this.heap = new BinaryHeap<>(heap);
         }
 
@@ -97,7 +97,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T>, PriorityQue
 
     @Override
     public Iterator<T> iterator() {
-        return new ArrayHeapIterator(this);
+        return new BinaryHeapIterator(this);
     }
 
     public static void main(String[] args) {
