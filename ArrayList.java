@@ -87,6 +87,8 @@ public class ArrayList<T> implements List<T>, Stack<T>, Queue<T> {
     }
 
     public static void main(String[] args) {
+        System.out.println("ArrayList\n");
+
         List<Integer> list = new ArrayList<>();
         System.out.println("Filling list with elements: 1,2,3");
         list.add(1);

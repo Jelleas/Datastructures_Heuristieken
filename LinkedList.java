@@ -88,12 +88,40 @@ public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
     }
 
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+        System.out.println("LinkedList\n");
+
+        List<Integer> list = new LinkedList<>();
+        System.out.println("Filling list with elements: 1,2,3");
+        list.add(1);
+        list.add(2);
         list.add(3);
-        list.add(4);
-        list.add(5);
-        for (Integer x : list) {
-            System.out.println(x);
+        System.out.println("Printing list elements");
+        for (Integer elem : list) {
+            System.out.println(elem);
+        }
+        System.out.println();
+
+        Stack<Integer> stack = new LinkedList<>();
+        System.out.println("Filling stack with elements: 1,2,3");
+        stack.add(1);
+        stack.add(2);
+        stack.add(3);
+        System.out.println("Emptying stack");
+        Integer stackElement;
+        while((stackElement = stack.pop()) != null) {
+            System.out.println(stackElement);
+        }
+        System.out.println();
+
+        Queue<Integer> queue = new LinkedList<>();
+        System.out.println("Filling queue with elements: 1,2,3");
+        queue.add(1);
+        queue.add(2);
+        queue.add(3);
+        System.out.println("Emptying queue");
+        Integer queueElement;
+        while((queueElement = queue.poll()) != null) {
+            System.out.println(queueElement);
         }
     }
 }
