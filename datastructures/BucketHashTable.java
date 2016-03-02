@@ -42,7 +42,13 @@ public class BucketHashTable<K,V> implements HashTable<K,V> {
         }
 
         public void put(K key, V value) {
-            if (get(key) != null) return;
+            for (int i = 0; i < keys.size(); i++)
+            {
+                if (keys.get(i).equals(key)) {
+                    values.set(i, value);
+                    return;
+                }
+            }
             keys.add(key);
             values.add(value);
         }
@@ -89,9 +95,11 @@ public class BucketHashTable<K,V> implements HashTable<K,V> {
         System.out.println("BucketHashTable\n");
 
         HashTable<String, Integer> table = new BucketHashTable<>();
-        System.out.println("Filling hashtable with key-value pairs: \"Hello\":10, \"World!\":20, \"penguin\":42");
+        System.out.println("Filling hashtable with key-value pairs:" +
+                " \"Hello\":10, \"World!\":20, \"penguin\":41, \"penguin\":42");
         table.put("Hello", 10);
         table.put("World!", 20);
+        table.put("penguin", 41);
         table.put("penguin", 42);
         System.out.println();
 
