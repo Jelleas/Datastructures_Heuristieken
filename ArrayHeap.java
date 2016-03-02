@@ -2,12 +2,39 @@ package com.company;
 
 import java.util.Iterator;
 import java.util.ArrayList; // Cheat import
+import java.util.NoSuchElementException;
 
 public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueue<T> {
+    private class ArrayHeapIterator implements Iterator<T> {
+        private ArrayHeap<T> heap;
+
+        public ArrayHeapIterator(ArrayHeap<T> heap) {
+            this.heap = new ArrayHeap<>(heap);
+        }
+
+        @Override
+        public boolean hasNext() {
+            return !heap.elements.isEmpty();
+        }
+
+        @Override
+        public T next() {
+            if (hasNext()) {
+                return heap.poll();
+            }
+            throw new NoSuchElementException();
+        }
+    }
+
     private ArrayList<T> elements;
 
     public ArrayHeap() {
         elements = new ArrayList<>();
+    }
+
+    public ArrayHeap(ArrayHeap<T> other) {
+        this();
+        elements.addAll(other.elements);
     }
 
     @Override
@@ -66,7 +93,7 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueu
 
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return new ArrayHeapIterator(this);
     }
 
     public static void main(String[] args) {
@@ -75,6 +102,9 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueu
         heap.add(2);
         heap.add(42);
         heap.add(3);
+        for (Integer x : heap) {
+            System.out.println(x);
+        }
         for (Integer x : new int[]{0,1}) {
             System.out.println(heap.poll());
         }
