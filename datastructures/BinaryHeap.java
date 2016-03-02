@@ -1,3 +1,5 @@
+package datastructures;
+
 import java.util.Iterator;
 import java.util.ArrayList; // Cheat import
 import java.util.NoSuchElementException;
