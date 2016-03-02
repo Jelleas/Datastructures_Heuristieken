@@ -112,8 +112,7 @@ public class BinaryHeap<T extends Comparable<T>> implements Heap<T>, PriorityQue
         heap.add(6);
         System.out.println();
 
-        System.out.println("Polling three times");
-        System.out.println(heap.poll());
+        System.out.println("Polling two times");
         System.out.println(heap.poll());
         System.out.println(heap.poll());
         System.out.println();

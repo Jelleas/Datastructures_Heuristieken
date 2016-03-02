@@ -53,7 +53,7 @@ public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
     @Override
     public T get(int index) {
         int i = 0;
-        for (T element : this) {
+        for (T element : this) { // eat your own dog food
             if (i == index) {
                 return element;
             }
@@ -123,6 +123,8 @@ public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
         while((queueElement = queue.poll()) != null) {
             System.out.println(queueElement);
         }
+
+        System.out.println(list.get(2));
     }
 }
 
