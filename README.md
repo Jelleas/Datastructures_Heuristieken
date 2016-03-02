@@ -5,5 +5,5 @@ Code accompanying [the lecture](https://docs.google.com/presentation/d/1lS-_g0ak
 
 ### Get this running in IntelliJ:
 - VCS -> Checkout from Version Control -> Github
-- Build new project
+- Choose: build new project
 - Follow instructions
