@@ -4,12 +4,12 @@ import java.util.Iterator;
 import java.util.ArrayList; // Cheat import
 import java.util.NoSuchElementException;
 
-public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueue<T> {
+public class BinaryHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueue<T> {
     private class ArrayHeapIterator implements Iterator<T> {
-        private ArrayHeap<T> heap;
+        private BinaryHeap<T> heap;
 
-        public ArrayHeapIterator(ArrayHeap<T> heap) {
-            this.heap = new ArrayHeap<>(heap);
+        public ArrayHeapIterator(BinaryHeap<T> heap) {
+            this.heap = new BinaryHeap<>(heap);
         }
 
         @Override
@@ -28,11 +28,11 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueu
 
     private ArrayList<T> elements;
 
-    public ArrayHeap() {
+    public BinaryHeap() {
         elements = new ArrayList<>();
     }
 
-    public ArrayHeap(ArrayHeap<T> other) {
+    public BinaryHeap(BinaryHeap<T> other) {
         this();
         elements.addAll(other.elements);
     }
@@ -62,6 +62,10 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueu
 
     @Override
     public T poll() {
+        if (elements.isEmpty()) {
+            return null;
+        }
+
         T element = elements.get(0);
         elements.set(0, elements.get(elements.size() - 1));
         elements.remove(elements.size() - 1);
@@ -97,21 +101,33 @@ public class ArrayHeap<T extends Comparable<T>> implements Heap<T>, PriorityQueu
     }
 
     public static void main(String[] args) {
-        Heap<Integer> heap = new ArrayHeap<>();
-        heap.add(1);
+        System.out.println("BinaryHeap\n");
+
+        Heap<Integer> heap = new BinaryHeap<>();
+        System.out.println("Filling heap with elements: 2,0,4,42,6");
         heap.add(2);
-        heap.add(42);
-        heap.add(3);
-        for (Integer x : heap) {
-            System.out.println(x);
-        }
-        for (Integer x : new int[]{0,1}) {
-            System.out.println(heap.poll());
-        }
-        heap.add(27);
         heap.add(0);
-        for (Integer x : new int[]{0,1,2,3}) {
-            System.out.println(heap.poll());
+        heap.add(4);
+        heap.add(42);
+        heap.add(6);
+        System.out.println();
+
+        System.out.println("Polling three times");
+        System.out.println(heap.poll());
+        System.out.println(heap.poll());
+        System.out.println(heap.poll());
+        System.out.println();
+
+        System.out.println("Adding 27,3,5");
+        heap.add(27);
+        heap.add(3);
+        heap.add(5);
+        System.out.println();
+
+        System.out.println("Emptying heap");
+        Integer element;
+        while ((element = heap.poll()) != null) {
+            System.out.println(element);
         }
     }
 }
