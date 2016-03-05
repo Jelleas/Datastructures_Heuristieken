@@ -1,34 +1,33 @@
 package datastructures;
 
 import java.util.ArrayList; // Cheat import
+import java.util.Queue; // Cheat import
+import java.util.LinkedList; // Cheat import
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
 public class BucketHashTable<K,V> implements HashTable<K,V> {
     private class HashTableIterator implements Iterator<K> {
-        private ArrayList<K> keys;
-        private int index;
+        private Queue<K> keys;
 
         public HashTableIterator(BucketHashTable<K,V> hashTable) {
-            keys = new ArrayList<>();
+            keys = new LinkedList<>();
             for (Bucket bucket : hashTable.buckets) {
                 keys.addAll(bucket.keys);
             }
-            index = 0;
         }
 
         @Override
         public K next() {
             if (hasNext()) {
-                index++;
-                return keys.get(index - 1);
+                return keys.poll();
             }
             throw new NoSuchElementException();
         }
 
         @Override
         public boolean hasNext() {
-            return index < keys.size();
+            return !keys.isEmpty();
         }
     }
 
