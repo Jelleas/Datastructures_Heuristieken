@@ -9,12 +9,14 @@ public class HashSet<T> implements Set<T> {
         table = new BucketHashTable<>();
     }
 
+    @Override
     public void add(T element) {
         if (!contains(element)) {
             table.put(element, true);
         }
     }
 
+    @Override
     public Boolean contains(T element) {
         return table.get(element) != null;
     }
