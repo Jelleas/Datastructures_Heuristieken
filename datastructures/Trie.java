@@ -8,11 +8,11 @@ import java.util.Queue; // cheat import
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
-public class GenericTrie<K extends Iterable<? extends Comparable<?>>, V> implements Map<K,V>, Iterable<K> {
+public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map<K,V>, Iterable<K> {
     private class GenericTrieIterator implements Iterator<K> {
         private Queue<K> keys;
 
-        public GenericTrieIterator(GenericTrie<K,V> trie) {
+        public GenericTrieIterator(Trie<K,V> trie) {
             keys = new LinkedList<>();
             collectValues(trie.rootNode);
         }
@@ -118,7 +118,7 @@ public class GenericTrie<K extends Iterable<? extends Comparable<?>>, V> impleme
 
     private Node rootNode;
 
-    public GenericTrie() {
+    public Trie() {
         rootNode = new Node(null);
     }
 
@@ -156,11 +156,11 @@ public class GenericTrie<K extends Iterable<? extends Comparable<?>>, V> impleme
             return text;
         };
 
-        System.out.println("GenericTrie\n");
+        System.out.println("Trie\n");
 
         System.out.println("Filling hashtable with key-value pairs:" +
                 " \"hello\":10, \"world!\":20, \"penguin\":41, \"penguin\":42");
-        Map<ArrayList<Character>, Integer> trie = new GenericTrie<>();
+        Map<ArrayList<Character>, Integer> trie = new Trie<>();
         trie.put(stringToCharList.apply("hello"), 10);
         trie.put(stringToCharList.apply("world!"), 20);
         trie.put(stringToCharList.apply("penguin"), 41);
