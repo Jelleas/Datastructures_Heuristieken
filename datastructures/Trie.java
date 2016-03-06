@@ -148,7 +148,7 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
 
         System.out.println("Trie\n");
 
-        System.out.println("Filling hashtable with key-value pairs:" +
+        System.out.println("Filling trie with key-value pairs:" +
                 " \"hello\":10, \"world!\":20, \"penguin\":41, \"penguin\":42");
         Map<ArrayList<Character>, Integer> trie = new Trie<>();
         trie.put(stringToCharList.apply("hello"), 10);
