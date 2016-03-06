@@ -6,7 +6,7 @@ import java.util.LinkedList; // Cheat import
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
-public class BucketHashTable<K,V> implements HashTable<K,V> {
+public class BucketHashTable<K,V> implements Map<K,V> {
     private class HashTableIterator implements Iterator<K> {
         private Queue<K> keys;
 
@@ -93,7 +93,7 @@ public class BucketHashTable<K,V> implements HashTable<K,V> {
     public static void main(String[] args) {
         System.out.println("BucketHashTable\n");
 
-        HashTable<String, Integer> table = new BucketHashTable<>();
+        Map<String, Integer> table = new BucketHashTable<>();
         System.out.println("Filling hashtable with key-value pairs:" +
                 " \"Hello\":10, \"World!\":20, \"penguin\":41, \"penguin\":42");
         table.put("Hello", 10);

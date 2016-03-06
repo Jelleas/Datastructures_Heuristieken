@@ -3,7 +3,7 @@ package datastructures;
 import java.util.Iterator;
 
 public class HashSet<T> implements Set<T> {
-    private HashTable<T,Boolean> table;
+    private Map<T,Boolean> table;
 
     public HashSet() {
         table = new BucketHashTable<>();
