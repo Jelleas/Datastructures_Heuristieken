@@ -18,8 +18,8 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
         }
 
         private void collectValues(Node node) {
-            if (node.isLeaf) {
-                keys.add(node.key);
+            if (node.leaf != null) {
+                keys.add(node.leaf.key);
             }
             for (Node nextNode : node.nextNodes) {
                 collectValues(nextNode);
@@ -40,24 +40,28 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
         }
     }
 
+    private class Leaf {
+        final K key;
+        final V value;
+        public Leaf(K key, V value) {
+            this.key = key;
+            this.value = value;
+        }
+    }
+
     private class Node {
         private LinkedList<Node> nextNodes;
-        private K key;
-        private V value;
-        private boolean isLeaf;
+        private Leaf leaf;
         private Object item;
 
         public Node(Object item) {
             nextNodes = new LinkedList<>();
-            isLeaf = false;
             this.item = item;
         }
 
         public void add(Iterator iterator, K key, V value) {
             if (!iterator.hasNext()) {
-                isLeaf = true;
-                this.key = key;
-                this.value = value;
+                leaf = new Leaf(key, value);
                 return;
             }
 
@@ -77,8 +81,8 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
 
         public V get(Iterator iterator) {
             if (!iterator.hasNext()) {
-                if (isLeaf) {
-                    return value;
+                if (leaf != null) {
+                    return leaf.value;
                 }
                 return null;
             }
