@@ -1,10 +1,10 @@
 package datastructures;
 
 import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.LinkedList; // cheat import
+import java.util.ArrayList; // cheat import
+import java.util.List; // cheat import
+import java.util.Queue; // cheat import
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
