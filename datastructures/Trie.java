@@ -129,7 +129,7 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
 
     public static void main(String[] args) {
         // small function useful for the specific example below
-        Function<String, Iterable<Character>> stringToCharList = (text) -> {
+        Function<String, Iterable<Character>> stringToIterable = (text) -> {
             ArrayList<Character> list = new ArrayList<>();
             for (Character letter : text.toCharArray()) {
                 list.add(letter);
@@ -138,7 +138,7 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
         };
 
         // small function useful for the specific example below
-        Function<Iterable<Character>, String> charListToString = (list) -> {
+        Function<Iterable<Character>, String> iterableToString = (list) -> {
             String text = "";
             for (Character letter : list) {
                 text += letter;
@@ -151,23 +151,23 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
         System.out.println("Filling trie with key-value pairs:" +
                 " \"hello\":10, \"world!\":20, \"penguin\":41, \"penguin\":42");
         Map<Iterable<Character>, Integer> trie = new Trie<>();
-        trie.put(stringToCharList.apply("hello"), 10);
-        trie.put(stringToCharList.apply("world!"), 20);
-        trie.put(stringToCharList.apply("penguin"), 41);
-        trie.put(stringToCharList.apply("penguin"), 42);
+        trie.put(stringToIterable.apply("hello"), 10);
+        trie.put(stringToIterable.apply("world!"), 20);
+        trie.put(stringToIterable.apply("penguin"), 41);
+        trie.put(stringToIterable.apply("penguin"), 42);
         System.out.println();
 
         System.out.println("Getting key \"penguin\"");
-        System.out.println(trie.get(stringToCharList.apply("penguin")));
+        System.out.println(trie.get(stringToIterable.apply("penguin")));
         System.out.println("Getting key \"hello\"");
-        System.out.println(trie.get(stringToCharList.apply("hello")));
+        System.out.println(trie.get(stringToIterable.apply("hello")));
         System.out.println("Getting key \"world!\"");
-        System.out.println(trie.get(stringToCharList.apply("world!")));
+        System.out.println(trie.get(stringToIterable.apply("world!")));
         System.out.println();
 
         System.out.println("Iterating over trie and printing all keys:");
         for (Iterable<Character> key : trie) {
-            System.out.println(charListToString.apply(key));
+            System.out.println(iterableToString.apply(key));
         }
     }
 }
