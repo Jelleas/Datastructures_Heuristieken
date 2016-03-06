@@ -7,10 +7,10 @@ import java.util.NoSuchElementException;
 import java.util.function.Function;
 
 public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
-    private class GenericTrieIterator implements Iterator<K> {
+    private class TrieIterator implements Iterator<K> {
         private Queue<K> keys;
 
-        public GenericTrieIterator(Trie<K,V> trie) {
+        public TrieIterator(Trie<K,V> trie) {
             keys = new LinkedList<>();
             collectValues(trie.rootNode);
         }
@@ -124,7 +124,7 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
 
     @Override
     public Iterator<K> iterator() {
-        return new GenericTrieIterator(this);
+        return new TrieIterator(this);
     }
 
     public static void main(String[] args) {
