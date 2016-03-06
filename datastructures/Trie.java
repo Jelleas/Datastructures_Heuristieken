@@ -8,7 +8,7 @@ import java.util.Queue; // cheat import
 import java.util.NoSuchElementException;
 import java.util.function.Function;
 
-public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map<K,V>, Iterable<K> {
+public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
     private class GenericTrieIterator implements Iterator<K> {
         private Queue<K> keys;
 
@@ -45,15 +45,15 @@ public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map
         private K key;
         private V value;
         private boolean isLeaf;
-        private Comparable item;
+        private Object item;
 
-        public Node(Comparable item) {
+        public Node(Object item) {
             nextNodes = new LinkedList<>();
             isLeaf = false;
             this.item = item;
         }
 
-        public void add(Iterator<? extends Comparable> iterator, K key, V value) {
+        public void add(Iterator iterator, K key, V value) {
             if (!iterator.hasNext()) {
                 isLeaf = true;
                 this.key = key;
@@ -61,28 +61,21 @@ public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map
                 return;
             }
 
-            Comparable nextItem = iterator.next();
-            int index = 0;
+            Object nextItem = iterator.next();
 
             for (Node node : nextNodes) {
                 if (node.item.equals(nextItem)) {
                     node.add(iterator, key, value);
                     return;
                 }
-                @SuppressWarnings("unchecked")
-                int compareResult = node.item.compareTo(nextItem);
-                if (compareResult > 0) {
-                    break;
-                }
-
-                index++;
             }
+
             Node nextNode = new Node(nextItem);
-            nextNodes.add(index, nextNode);
+            nextNodes.add(nextNode);
             nextNode.add(iterator, key, value);
         }
 
-        public V get(Iterator<? extends Comparable> iterator) {
+        public V get(Iterator iterator) {
             if (!iterator.hasNext()) {
                 if (isLeaf) {
                     return value;
@@ -90,7 +83,7 @@ public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map
                 return null;
             }
 
-            Comparable next = iterator.next();
+            Object next = iterator.next();
             int index = indexOf(next);
             if (index != -1) {
                 return nextNodes.get(index).get(iterator);
@@ -99,16 +92,11 @@ public class Trie<K extends Iterable<? extends Comparable<?>>, V> implements Map
             return null;
         }
 
-        private int indexOf(Comparable item) {
+        private int indexOf(Object item) {
             int index = 0;
             for (Node node : nextNodes) {
                 if (node.item.equals(item)) {
                     return index;
-                }
-                @SuppressWarnings("unchecked")
-                int compareResult = node.item.compareTo(item);
-                if (compareResult > 0) {
-                    break;
                 }
                 index++;
             }
