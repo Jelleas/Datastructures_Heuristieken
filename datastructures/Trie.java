@@ -138,7 +138,7 @@ public class Trie<K extends Iterable, V> implements Map<K,V>, Iterable<K> {
         };
 
         // small function useful for the specific example below
-        Function<List<Character>, String> charListToString = (list) -> {
+        Function<Iterable<Character>, String> charListToString = (list) -> {
             String text = "";
             for (Character letter : list) {
                 text += letter;
