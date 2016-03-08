@@ -11,9 +11,7 @@ public class HashSet<T> implements Set<T> {
 
     @Override
     public void add(T element) {
-        if (!contains(element)) {
-            table.put(element, true);
-        }
+        table.put(element, true);
     }
 
     @Override
