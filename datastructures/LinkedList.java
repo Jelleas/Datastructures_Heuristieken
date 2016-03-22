@@ -69,6 +69,11 @@ public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
         }
         T element = end.value;
         end = end.previous;
+
+        if (end == null) {
+            begin = null;
+        }
+
         return element;
     }
 
@@ -79,6 +84,11 @@ public class LinkedList<T> implements List<T>, Stack<T>, Queue<T> {
         }
         T element = begin.value;
         begin = begin.next;
+
+        if (begin == null) {
+            end = null;
+        }
+
         return element;
     }
 
